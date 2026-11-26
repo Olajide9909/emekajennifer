@@ -395,3 +395,8 @@ p { margin: 0 0 1em; }
   .cards { grid-template-columns: repeat(3, 1fr) !important; }
   .stats { break-before: avoid; }
 }
+.ig-media--photo, .ig-media--video { position: relative; }
+.ig-media--photo img { object-position: top; filter: none; }
+.ig-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig-thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.ig-thumbs img { width: 100%; aspect-ratio: 5/4; object-fit: cover; object-position: top; }

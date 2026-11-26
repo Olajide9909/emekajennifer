@@ -79,6 +79,9 @@
     const scr = screens[i];
     scr.querySelectorAll("[data-count]").forEach((el) => { delete el.dataset.done; countUp(el); });
     if (scr.classList.contains("screen--story")) runStory(scr); else clearInterval(storyTimer);
+    document.querySelectorAll(".screen video").forEach((v) => {
+      if (scr.contains(v)) { v.play().catch(() => {}); } else { v.pause(); }
+    });
   };
   // Auto-advance while the section is on screen; a tap takes over
   const bar = document.querySelector(".work__progress i");
