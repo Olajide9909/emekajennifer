@@ -135,11 +135,11 @@
   gsap.to(portrait, { yPercent: 12, scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
 
   // Generic reveals
-  gsap.utils.toArray("main > section:not(.hero) .reveal").forEach((el) => {
+  gsap.utils.toArray("main > section:not(.hero) .reveal:not(.h2)").forEach((el) => {
     gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%" } });
   });
   gsap.utils.toArray(".h2, .contact__title").forEach((el) => {
-    gsap.from(el, { y: 80, opacity: 0, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%" } });
+    gsap.fromTo(el, { y: 80, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 88%" } });
   });
   gsap.from(".about__media", { rotate: -12, scale: 0.9, scrollTrigger: { trigger: ".about", start: "top 80%", end: "center center", scrub: true } });
 
