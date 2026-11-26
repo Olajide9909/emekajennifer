@@ -360,3 +360,38 @@ p { margin: 0 0 1em; }
 .step__stat { margin-top: 14px; color: var(--cream) !important; }
 .step__stat b { font-family: var(--display); font-weight: 400; font-size: 34px; color: var(--coral); margin-right: 6px; }
 .phone { max-width: min(290px, 36vh); }
+
+/* PRINT / PDF */
+@media print {
+  @page { size: A4; margin: 0; }
+  html, body { background: var(--forest) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .grain, .cursor, .to-top, .nav, .hero__scroll, .phone-wrap, .work__progress { display: none !important; }
+  .reveal, .h2, .contact__title, .card, .hero__line .split, .hero__portrait, .hero__badge { opacity: 1 !important; transform: none !important; translate: none; }
+  .hero__portrait { translate: -50% 0 !important; }
+  .hero { min-height: 297mm; padding-top: 60px; }
+  .hero__curve path { stroke-dashoffset: 0 !important; }
+  .marquee { transform: none; margin-top: 0; }
+  .marquee__track { animation: none; }
+  .hero__badge svg { animation: none; }
+  .work__body { grid-template-columns: 1fr; }
+  .step__body { grid-template-rows: 1fr !important; }
+  .step__head { opacity: 1 !important; }
+  .step { break-inside: avoid; max-width: none; }
+  .work__shots { display: grid !important; }
+  .strip__track { transform: none !important; flex-wrap: wrap; width: auto; padding: 0 var(--pad); }
+  .strip figure { width: calc(33% - 14px); transform: none !important; }
+  .strip__word { display: none !important; }
+  .card, .timeline li, .about, .stats, .contact { break-inside: avoid; }
+  .cards { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; overflow: visible; }
+  .services { border-radius: 0; }
+  .about, .work, .services, .journey, .contact { padding-top: 50px; padding-bottom: 50px; }
+  .contact { min-height: 0; }
+  a[href^="http"]::after { content: none; }
+}
+.work__shots { display: none; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px; }
+.work__shots img { width: 100%; border-radius: 16px; aspect-ratio: 9/16; object-fit: cover; object-position: top; }
+@media print {
+  .services, .journey { break-before: page; }
+  .cards { grid-template-columns: repeat(3, 1fr) !important; }
+  .stats { break-before: avoid; }
+}
