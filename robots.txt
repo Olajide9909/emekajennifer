@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emekapriscilla.vercel.app/sitemap.xml
