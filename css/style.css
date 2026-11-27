@@ -352,7 +352,10 @@ p { margin: 0 0 1em; }
   @keyframes feedScroll { 0%, 15% { transform: translateY(0); } 100% { transform: translateY(calc(-100% + 300px)); } }
 }
 .phone__bar { color: #fff; mix-blend-mode: difference; }
-.screen--fb { background: #fff; }
+.screen--fb { background: #242526; }
+.screen--fb .ig-stats { border-color: #3a3b3c; color: #b0b3b8; }
+.screen--fb .ig-stats b { color: #e4e6eb; }
+.screen--fb .fb-platforms span { background: #263951; color: #4599ff; }
 .fb-shot { display: block; }
 .fb-shot img { width: 100%; height: auto; }
 .fb-platforms { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 14px; }
