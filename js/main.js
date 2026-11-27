@@ -68,6 +68,20 @@
     storyTimer = setInterval(show, 2500);
   };
 
+  // On phones the feed sits inside the open brand, so a tap shows its change right there
+  const phoneWrap = document.querySelector(".phone-wrap");
+  const workBody = document.querySelector(".work__body");
+  const narrow = window.matchMedia("(max-width: 900px)");
+  const placePhone = () => {
+    if (narrow.matches && current >= 0) {
+      const host = steps[current].querySelector(".step__body > div");
+      if (phoneWrap.parentElement !== host) host.prepend(phoneWrap);
+    } else if (phoneWrap.parentElement !== workBody) {
+      workBody.appendChild(phoneWrap);
+    }
+  };
+  narrow.addEventListener("change", placePhone);
+
   const setScreen = (i) => {
     if (i === current) return;
     current = i;
@@ -76,6 +90,7 @@
       s.querySelector(".step__head").setAttribute("aria-expanded", k === i);
     });
     screens.forEach((s, k) => s.classList.toggle("is-active", k === i));
+    placePhone();
     const scr = screens[i];
     scr.querySelectorAll("[data-count]").forEach((el) => { delete el.dataset.done; countUp(el); });
     if (scr.classList.contains("screen--story")) runStory(scr); else clearInterval(storyTimer);
@@ -86,7 +101,7 @@
   // Auto-advance while the section is on screen; a tap takes over
   const bar = document.querySelector(".work__progress i");
   const DWELL = 7000;
-  let autoplay = !reduced, visible = false, t0 = 0;
+  let autoplay = !reduced && !window.matchMedia("(max-width: 900px)").matches, visible = false, t0 = 0;
   const loop = (t) => {
     if (autoplay && visible) {
       if (!t0) t0 = t;
@@ -101,6 +116,13 @@
     .observe(document.querySelector(".work"));
   steps.forEach((s, k) => s.querySelector(".step__head").addEventListener("click", () => {
     autoplay = false; bar.style.width = "0"; setScreen(k);
+    if (narrow.matches) {
+      // wait for the previous brand to finish closing, then bring this one to the top
+      setTimeout(() => {
+        const y = s.getBoundingClientRect().top + window.scrollY - 76;
+        window.scrollTo({ top: y, behavior: reduced ? "auto" : "smooth" });
+      }, reduced ? 0 : 520);
+    }
   }));
   setScreen(0);
 

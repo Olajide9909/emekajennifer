@@ -400,3 +400,7 @@ p { margin: 0 0 1em; }
 .ig-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ig-thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .ig-thumbs img { width: 100%; aspect-ratio: 5/4; object-fit: cover; object-position: top; }
+@media (max-width: 900px) {
+  .step .phone-wrap { order: 0; padding: 14px 0 18px; display: grid; place-items: center; }
+  .step .phone { max-width: min(220px, 58vw); }
+}
